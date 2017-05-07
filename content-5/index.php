@@ -4,7 +4,7 @@
 		$username=mysql_real_escape_string($_POST['username']);
 		$pwd=mysql_real_escape_string($_POST['passwd']);
 		$sql1="SELECT * FROM users WHERE name='$username' and password='$pwd'";
-		$result1=mysql_query($sql1);
+		$result1=$con->query($sql1);
 		$count1=mysql_num_rows($result1);
 		session_start();
 		if($count1>0)
@@ -46,9 +46,9 @@
 					{ 
 						$cookie=$_COOKIE['User'];
 						$sql="SELECT * FROM users WHERE name='$cookie' ";
-						$result=mysql_query($sql);
-						$count=mysql_num_rows($result);
-						if ($content = mysql_fetch_array($result)) {
+						$result=$con->query($sql);
+						$count=$result->num_rows;
+						if ($content = $result->fetch_array()) {
 								echo '<fieldset><legend>Details</legend>';
 								echo '<br/>User ID: <b>'. $content['idusers'].'</b><br/><br/>';
 								echo 'User name: <b>'. $content['name'].'</b><br/><br/>';

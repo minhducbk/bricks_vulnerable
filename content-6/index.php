@@ -3,7 +3,7 @@
 	if(isset($_GET['id'])) {
 		$id=base64_decode($_GET['id'],true);
 		$sql = "SELECT * FROM users WHERE idusers=$id LIMIT 1";
-		$result=mysql_query($sql);
+		$result=$con->query($sql);
 	} else {
 		header("Location: index.php?id=Mw==");
 		exit;
@@ -37,7 +37,7 @@
 		<fieldset>
 			<legend>Details</legend>
 				<?php 
-					if ($content = mysql_fetch_array($result)) {
+					if ($content = $result->fetch_array()) {
 						echo '<br/>User ID: <b>'. $content['idusers'].'</b><br/><br/>';
 						echo 'User name: <b>'. $content['name'].'</b><br/><br/>';
 						echo 'E-mail: <b>'. $content['email'].'</b><br/><br/>';

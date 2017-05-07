@@ -3,7 +3,7 @@
 	$user=$_GET['user'];
 	if(isset($_GET['user'])) {
 		$sql = "SELECT * FROM users WHERE name='$user'";
-		$result=mysql_query($sql);
+		$result=$con->query($sql);
 	} else {
 		header("Location: index.php?user=harry");
 		exit;
@@ -40,7 +40,7 @@
 			<fieldset>
 				<legend>Details</legend>
 					<?php 
-							if ($content = mysql_fetch_array($result)) {
+							if ($content = $result->fetch_array()) {
 								echo '<br/>User ID: <b>'. $content['idusers'].'</b><br/><br/>';
 								echo 'User name: <b>'. $content['name'].'</b><br/><br/>';
 								echo 'E-mail: <b>'. $content['email'].'</b><br/><br/>';

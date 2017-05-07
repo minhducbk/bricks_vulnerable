@@ -5,8 +5,8 @@
 		$username=$_POST['username'];
 		$pwd=$_POST['passwd'];
 		$sql="SELECT * FROM users WHERE name=('$username') and password=('$pwd') LIMIT 0,1";
-		$result=mysql_query($sql);
-		$count=mysql_num_rows($result);
+		$result=$con->query($sql);
+		$count=$result->num_rows;
 		$sSuccessMsg = ($count>0?
 		"<div class=\"alert-box success\">Succesfully logged in.<a href=\"\" class=\"close\">&times;</a></div>":
 		"<div class=\"alert-box alert\">Wrong user name or password.<a href=\"\" class=\"close\">&times;</a></div>");

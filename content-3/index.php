@@ -36,9 +36,9 @@
 		
 	$username=$_POST['username'];
 	$sql="SELECT * FROM users WHERE name='$username'";
-	$result=mysql_query($sql);
-	$count=mysql_num_rows($result);
-  if ($content = mysql_fetch_array($result)) {
+	$result=$con->query($sql);
+	$count=$result->num_rows;
+  if ($content = $result->fetch_array()) {
 			echo '<br/>User ID: <b>'. $content['idusers'].'</b><br/><br/>';
 			echo 'User name: <b>'. $content['name'].'</b><br/><br/>';
 			echo 'E-mail: <b>'. $content['email'].'</b><br/><br/>';
